@@ -7,7 +7,11 @@ This repository is a collection of my hands-on practice and notes while learning
 - And more as I progress 🚀
 ---
 
+
+---
+
 ## ⚡ Topics Covered So Far
+
 ### 🔹 JDBC
 - Establishing connection with MySQL using `DriverManager`
 - Performing **CRUD** operations with `PreparedStatement`
@@ -16,11 +20,15 @@ This repository is a collection of my hands-on practice and notes while learning
 
 ### 🔹 Hibernate
 - Hibernate configuration and setup
-- Entity mapping (`@Entity`, `@Id`, etc.)
-- Saving, updating, deleting entities
-- Querying with HQL
+- Entity mapping with annotations and XML
+- CRUD operations (`persist`, `get`, `update`, `delete`)
+- Relationships / Mappings:
+  - One-to-One
+  - One-to-Many & Many-to-One
+  - Many-to-Many
 
 ---
+
 ## ⚡ JDBC Implementation – Steps
 
 1. **Set up Database**  
@@ -42,6 +50,8 @@ This repository is a collection of my hands-on practice and notes while learning
 5. **Close Resources**  
    - Always close `ResultSet`, `PreparedStatement`, and `Connection` objects.  
    - Prefer `try-with-resources` for automatic resource management.  
+
+---
 
 ## ⚡ Hibernate Implementation – Steps
 
@@ -71,15 +81,59 @@ This repository is a collection of my hands-on practice and notes while learning
    - Use `session.persist(obj)` to save the object.  
    - Commit transaction and close session.  
 
+---
 
-
-
-## 🛠️ Prerequisites
-- **Java 8+** installed
-- **MySQL** installed and running (for JDBC examples)
-- **MySQL Connector/J** (JDBC driver in classpath)
-- **Hibernate JARs** or Maven/Gradle dependencies
-- Any IDE (**IntelliJ, Eclipse, or VS Code**)
+## 🔄 Hibernate CRUD Operations
+- **Create** → `session.persist(entity)`  
+- **Read** → `session.find(Entity.class, id)`  
+- **Update** → `session.merge(entity)`  
+- **Delete** → `session.remove(entity)`  
 
 ---
 
+## 🔗 Hibernate Mappings
+
+1. **One-to-One Mapping**  
+   - Used when one entity is associated with exactly one other entity.  
+
+2. **One-to-Many & Many-to-One Mapping**  
+   - One entity is related to multiple entities, and vice versa.  
+
+3. **Many-to-Many Mapping**  
+   - Entities can have a relationship with many entities on both sides.  
+
+Each mapping is implemented with proper Hibernate annotations (`@OneToOne`, `@OneToMany`, `@ManyToOne`, `@ManyToMany`) and tested with sample entities.  
+
+---
+
+## 🎯 Purpose
+This repository is meant for:
+- Documenting my journey of learning the **Java ecosystem**
+- Building a strong foundation in **enterprise development**
+- Serving as **reference code** for future projects
+
+---
+
+## 📌 Recruiter Highlights
+- Hands-on experience with **JDBC** and **Hibernate**
+- Strong knowledge of **CRUD operations**
+- Implemented **Hibernate mappings (One-to-One, One-to-Many, Many-to-One, Many-to-Many)**
+- Familiar with **SQL integration with Java**
+- Actively learning **Spring Core** and **Spring Boot**
+
+---
+
+## 🔮 Next Steps
+- Add **Spring Core** and **Spring Boot** examples  
+- Work on **JPA** with Hibernate  
+- Create small demo projects integrating multiple technologies  
+
+---
+
+## 🛠️ Prerequisites
+- **Java 8+** installed
+- **MySQL** installed and running
+- **Maven** installed
+- Any IDE (**IntelliJ, Eclipse, VS Code**)
+
+👨‍💻 Author: Mahesh Kumar  
