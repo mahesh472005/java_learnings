@@ -12,6 +12,17 @@ public class Laptop {
     private String brand;
     private String model;
 
+    @ManyToOne
+    private Developer developer;
+
+    public Developer getDeveloper() {
+        return developer;
+    }
+
+    public void setDeveloper(Developer developer) {
+        this.developer = developer;
+    }
+
     public int getLid() {
         return lid;
     }

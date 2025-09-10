@@ -2,6 +2,8 @@ package org.example;
 
 import jakarta.persistence.*;
 
+import java.util.List;
+
 @Entity
 @Table(name = "developer")
 public class Developer {
@@ -11,8 +13,17 @@ public class Developer {
 
     private String name;
 
-    @OneToOne
-    private Laptop laptop;
+    @OneToMany(mappedBy = "developer")
+    private List<Laptop> laptop;
+
+    public List<Laptop> getLaptop() {
+        return laptop;
+    }
+
+    public void setLaptop(List<Laptop> laptop) {
+        this.laptop = laptop;
+    }
+
 
     @Override
     public String toString() {
@@ -39,11 +50,4 @@ public class Developer {
         this.name = name;
     }
 
-    public Laptop getLaptop() {
-        return laptop;
-    }
-
-    public void setLaptop(Laptop laptop) {
-        this.laptop = laptop;
-    }
 }
