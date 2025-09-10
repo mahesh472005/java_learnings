@@ -3,6 +3,8 @@ package org.example;
 
 import jakarta.persistence.*;
 
+import java.util.List;
+
 @Entity
 public class Laptop {
 
@@ -12,14 +14,14 @@ public class Laptop {
     private String brand;
     private String model;
 
-    @ManyToOne
-    private Developer developer;
+    @ManyToMany
+    private List<Developer> developer;
 
-    public Developer getDeveloper() {
+    public List<Developer> getDeveloper() {
         return developer;
     }
 
-    public void setDeveloper(Developer developer) {
+    public void setDeveloper(List<Developer> developer) {
         this.developer = developer;
     }
 
@@ -53,6 +55,7 @@ public class Laptop {
                 "lid=" + lid +
                 ", brand='" + brand + '\'' +
                 ", model='" + model + '\'' +
+                ", developer=" + developer +
                 '}';
     }
 }

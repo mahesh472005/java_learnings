@@ -13,7 +13,7 @@ public class Developer {
 
     private String name;
 
-    @OneToMany(mappedBy = "developer")
+    @ManyToMany(mappedBy = "developer")
     private List<Laptop> laptop;
 
     public List<Laptop> getLaptop() {
