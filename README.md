@@ -7,9 +7,6 @@ This repository is a collection of my hands-on practice and notes while learning
 - And more as I progress 🚀
 ---
 
-
----
-
 ## ⚡ Topics Covered So Far
 
 ### 🔹 JDBC
