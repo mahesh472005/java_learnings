@@ -26,6 +26,28 @@ import org.springframework.context.support.ClassPathXmlApplicationContext;
           property tag, where as if you want to refer to an object we use the `ref`
           in the property tag, check the laptop reference in spring.xml, this is also
           a setter injection but with `ref`
+
+       Constructor  Injection :
+        *   When a class (e.g., Developer) has attributes like age (primitive) and
+            laptop (object), we can assign values using constructor injection in
+            Spring with <constructor-arg> inside the bean configuration.
+        *   <constructor-arg> have 4 attributes :
+            1. value :-
+                * Used to pass primitive values.
+                * Values must be passed in sequence, as per constructor order.
+            2. ref :-
+                * Used to pass object references.
+                * Objects must also be passed in sequence.
+            3. name :-
+                * Used to pass values or objects by constructor parameter name.
+                * Order does not matter.
+                * Requires @ConstructorProperties({"age", "laptop"}) annotation before
+                  the constructor in the Developer class.
+            4. index  :-
+                * Used to pass values or objects by their position in the constructor.
+            5. type  :-
+                * Used to pass values or objects by their type in the constructor.
+                * Order does not matter.
            */
 public class App 
 {
@@ -40,7 +62,6 @@ public class App
 
         Developer developer2 = applicationContext.getBean(Developer.class);
         developer2.code();
-
 
     }
 }

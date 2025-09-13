@@ -1,9 +1,24 @@
 package org.mahesh;
 
+import java.beans.ConstructorProperties;
+
 public class Developer {
 
     private int age;
     private Laptop laptop;
+
+    public Developer()
+    {
+        System.out.println("Object created");
+    }
+
+    @ConstructorProperties({"age", "laptop"})
+    public Developer(int age, Laptop laptop)
+    {
+        this.age = age;
+        this.laptop = laptop;
+    }
+
 
     public Laptop getLaptop() {
         return laptop;
@@ -11,11 +26,6 @@ public class Developer {
 
     public void setLaptop(Laptop laptop) {
         this.laptop = laptop;
-    }
-
-    public Developer()
-    {
-        System.out.println("Object created");
     }
 
     public int getAge() {
