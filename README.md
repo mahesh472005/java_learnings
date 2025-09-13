@@ -1,9 +1,9 @@
 # 📘 Java Learnings Repository
 
 This repository is a collection of my hands-on practice and notes while learning **Java frameworks and tools** such as:
-- JDBC
-- Hibernate
-- Spring (to be added later)
+- **[JDBC](https://github.com/mahesh472005/java_learnings/tree/main/jdbc#jdbc)**
+- **[Hibernate](https://github.com/mahesh472005/java_learnings/tree/main/hibernate#hibernate)**
+- **[Spring](https://github.com/mahesh472005/java_learnings/tree/main/spring-framework#-spring-framework--complete-guide)**
 - And more as I progress 🚀
 ---
 
