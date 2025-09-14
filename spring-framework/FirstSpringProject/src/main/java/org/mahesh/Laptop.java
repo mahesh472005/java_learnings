@@ -1,9 +1,10 @@
 package org.mahesh;
 
-public class Laptop {
+public class Laptop implements Computer {
 
+    @Override
     public void compile()
     {
-        System.out.println("Code is compiling");
+        System.out.println("compiling in the Laptop");
     }
 }

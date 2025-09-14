@@ -5,28 +5,23 @@
        xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
     http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd">
 
-    <bean id="d1" class="org.mahesh.Developer" scope="prototype">
-
-<!--Setter Injection -->
-<!--        <property name="age" value="30"/>-->
-<!--        <property name="laptop" ref="l1"/>-->
-
-<!--Constructor injection   -->
-<!--        <constructor-arg value="50"/>-->
-<!--        <constructor-arg ref="l1"/>-->
-
-<!--        <constructor-arg index="1" ref="l1"/>-->
-<!--        <constructor-arg index="0" value="50"/>-->
-
-<!--        <constructor-arg name="laptop" ref="l1"/>-->
-<!--        <constructor-arg name="age" value="50"/>-->
-
-<!--        <constructor-arg type="org.mahesh.Laptop" ref="l1"/>-->
-<!--        <constructor-arg type="int" value="50"/>-->
-
+    <bean id="developer" class="org.mahesh.Developer" autowire="byType">
+        <!--Autowiring-->
+<!--    <property name="computer" ref="computer"/>-->
     </bean>
 
-    <bean id="l1" class="org.mahesh.Laptop">
-    </bean>
+<!--    Example for "autowire = byName"-->
+<!--        <bean id="laptop" class="org.mahesh.Laptop"> </bean>-->
+<!--        <bean id="desktop" class="org.mahesh.Desktop"> </bean>-->
+
+<!--    Example for "autowire = byType", Only one of the both should be there-->
+<!--        <bean id="com1" class="org.mahesh.Laptop" > </bean> -->
+<!--        <bean id="com2" class="org.mahesh.Desktop"> </bean>-->
+
+<!--    Example for "autowire = byType" and primary = true-->
+        <bean id="com3" class="org.mahesh.Laptop" primary="true"> </bean>
+        <bean id="com4" class="org.mahesh.Desktop" > </bean>
+
+
 
 </beans>
