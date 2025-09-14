@@ -96,12 +96,125 @@ class Project {
 
 ---
 
-## 🚀 Key Takeaways for Interviews
-✅ Understand **IOC & DI** — backbone of Spring.  
-✅ Be confident in **Bean Scopes** & **ApplicationContext**.  
-✅ Explain **Spring vs Spring Boot** differences clearly.  
-✅ Demonstrate setup using **XML, Annotation, and Java Config**.  
-✅ Show practical use of `@Component` and `@Autowired`.  
+## 🔹 Setter Injection (Using property tags)
+Setter Injection uses `<property>` tags to inject dependencies.  
+
+Example:  
+```xml
+<bean id="student" class="com.mahesh.Student">
+    <property name="name" value="Mahesh"/>
+    <property name="marks" value="90"/>
+</bean>
+```
+
+For injecting another class:  
+```xml
+<bean id="address" class="com.mahesh.Address">
+    <property name="city" value="Delhi"/>
+</bean>
+
+<bean id="student" class="com.mahesh.Student">
+    <property name="name" value="Mahesh"/>
+    <property name="address" ref="address"/>
+</bean>
+```
 
 ---
 
+## 🔹 Constructor Injection (Using constructor-arg)
+Constructor Injection uses `<constructor-arg>` tags.  
+
+Example:  
+```xml
+<bean id="student" class="com.mahesh.Student">
+    <constructor-arg value="Mahesh"/>
+    <constructor-arg value="90"/>
+</bean>
+```
+
+For injecting a class:  
+```xml
+<bean id="address" class="com.mahesh.Address">
+    <property name="city" value="Delhi"/>
+</bean>
+
+<bean id="student" class="com.mahesh.Student">
+    <constructor-arg value="Mahesh"/>
+    <constructor-arg ref="address"/>
+</bean>
+```
+
+---
+
+## 🔹 Autowiring (XML-based)
+- **byName** → Matches the property name with a bean id.  
+- **byType** → Matches the property type with a bean class.  
+
+Example (byName):  
+```xml
+<bean id="address" class="com.mahesh.Address"/>
+<bean id="student" class="com.mahesh.Student" autowire="byName"/>
+```
+
+Example (byType):  
+```xml
+<bean id="addressBean" class="com.mahesh.Address"/>
+<bean id="student" class="com.mahesh.Student" autowire="byType"/>
+```
+
+---
+
+## 🔹 Primary Bean Concept
+When multiple beans of the same type exist, we can mark one as **primary**:  
+```java
+<!-- Two beans of same type -->
+<bean id="devA" class="com.mahesh.DeveloperA" primary="true"/>
+<bean id="devB" class="com.mahesh.DeveloperB"/>
+
+```
+
+Spring will prefer `DeveloperA` when autowiring.  
+
+---
+
+## 🔹 Lazy Initialization
+- By default, Singleton beans are created at startup.  
+- Use `lazy-init="true"` to delay initialization until the bean is requested.  
+
+Example:  
+```xml
+<bean id="dev" class="com.mahesh.Developer" lazy-init="true"/>
+```
+
+🔑 Points to Remember:  
+- Singleton + lazy-init → Created only when requested.  
+- Prototype beans are always created when requested, lazy-init has no effect.  
+
+---
+
+## 🔹 Inner Beans
+Beans can be defined inside another bean definition, useful when they are not shared.  
+
+Example:  
+```xml
+<bean id="student" class="com.mahesh.Student">
+    <property name="address">
+        <bean class="com.mahesh.Address">
+            <property name="city" value="Delhi"/>
+        </bean>
+    </property>
+</bean>
+```
+
+---
+
+## 🚀 Key Takeaways for Interviews
+✅ Understand **IOC & DI** — backbone of Spring.  
+✅ Be confident in **Setter Injection, Constructor Injection & Autowiring**.  
+✅ Explain **Primary, Lazy-init, Inner Beans** clearly.  
+✅ Show practical use of `@Component` and `@Autowired`.  
+✅ Demonstrate setup using **XML, Annotation, and Java Config**.  
+
+---
+
+🔥 With this knowledge, you can confidently explain **Spring fundamentals** in interviews and showcase **hands-on implementation** to recruiters.  
