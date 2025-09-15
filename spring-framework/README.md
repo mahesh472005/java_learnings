@@ -2,8 +2,8 @@
 
 Spring is an **ecosystem for building Java applications**.  
 It promotes **POJO-based development** and is built on the core principles of:  
-- **IOC (Inversion of Control)**  
-- **DI (Dependency Injection)**  
+- **IOC (Inversion of Control) / DI (Dependency Injection)**
+- **AOP(Aspect-Oriented Programming)**  
 
 ---
 
@@ -27,7 +27,7 @@ It promotes **POJO-based development** and is built on the core principles of:
 
 ---
 
-## 🔹 Spring Project Setup (XML-based)
+## 🔰 Spring Project Setup (XML-based)
 1. Create a **Maven Project** with `quick-start` archetype.  
 2. Add **Spring Context Dependency** from Maven Repository.  
 3. Create a class (e.g., `Developer`).  
@@ -205,16 +205,205 @@ Example:
     </property>
 </bean>
 ```
+---
+## 🔰 Spring Project Setup (Java-based)
+1. Create a **Maven Project** with `quick-start` archetype.  
+2. Add **Spring Context Dependency** from Maven Repository.  
+3. Create your POJO classes (e.g., `Developer`).  
+4. Create a Java Configuration class:  
+   ```java
+   @Configuration
+   @ComponentScan("com.mahesh")
+   public class AppConfig {}
+   ```
+5. Load context in `Main`   
+
+```java
+AnnotationConfigApplicationContext context = new AnnotationConfigApplicationContext(AppConfig.class);
+Developer dev = context.getBean(Developer.class);
+dev.code();
+
+```
+
+---
+
+### 🔹 Bean Scopes with Annotations
+```java
+@Component
+@Scope("singleton") // default
+class DevSingleton {}
+
+@Component
+@Scope("prototype")
+class DevPrototype {}
+```
+
+- **Singleton** → One instance in container (default).  
+- **Prototype** → New instance every `getBean()` call.  
+
+---
+
+### 🔹 Autowiring Styles
+
+#### 1. Field Injection
+```java
+@Component
+class Student {
+    @Autowired
+    private Address address; // injected automatically
+}
+```
+
+#### 2. Constructor Injection ✅ (Recommended)
+```java
+@Component
+class Student {
+    private Address address;
+
+    @Autowired
+    public Student(Address address) {
+        this.address = address;
+    }
+}
+```
+
+#### 3. Setter Injection
+```java
+@Component
+class Student {
+    private Address address;
+
+    @Autowired
+    public void setAddress(Address address) {
+        this.address = address;
+    }
+}
+```
+
+---
+
+### 🔹 Handling Ambiguity with `@Qualifier`
+```java
+@Component("addr1")
+class AddressA {}
+
+@Component("addr2")
+class AddressB {}
+
+@Component
+class Student {
+    @Autowired
+    @Qualifier("addr1")
+    private AddressA address;
+}
+```
+
+---
+
+### 🔹 `@Primary` Annotation
+```java
+@Component
+@Primary
+class DeveloperA implements Developer {}
+
+@Component
+class DeveloperB implements Developer {}
+
+@Component
+class Project {
+    @Autowired
+    private Developer developer; // DeveloperA preferred
+}
+```
+
+---
+
+### 🔹 `@Lazy` Initialization
+```java
+@Component
+@Lazy
+class Developer {
+    public Developer() {
+        System.out.println("Developer bean initialized lazily!");
+    }
+}
+```
+
+---
+
+### 🔹 Relationships between Annotations
+- `@Component + @Scope("singleton")` → One shared instance.  
+- `@Component + @Scope("prototype")` → New instance each time.  
+- `@Lazy + @Scope("singleton")` → Singleton created only when needed.  
+- `@Primary` works with `@Autowired` to resolve conflicts.  
+- `@Qualifier` **overrides** `@Primary` when explicitly used.  
+
+---
+
+## 🔹 Relationship between `@Scope` and `@Value`
+
+### ✨ Key Concept:
+- `@Value` injects **literal values** or **properties**.  
+- Works across all scopes (singleton, prototype, etc.).  
+- Behavior depends on scope lifecycle.  
+
+---
+
+### ✅ Example: Singleton + `@Value`
+```java
+@Component
+@Scope("singleton")
+class Developer {
+    @Value("Mahesh")
+    private String name;
+
+    public String getName() { return name; }
+}
+```
+- Value injected **once** during container init.  
+- Every `getBean()` call → same object with same value.  
+
+---
+
+### ✅ Example: Prototype + `@Value`
+```java
+@Component
+@Scope("prototype")
+class Developer {
+    @Value("Mahesh")
+    private String name;
+
+    public String getName() { return name; }
+}
+```
+- Each `getBean()` call → **new object**.  
+- `@Value` injects value **fresh each time**.  
+
+---
+
+### 🔑 Key Takeaways
+- `@Value` always injects values regardless of scope.  
+- **Singleton + @Value** → injected once, reused.  
+- **Prototype + @Value** → injected every new object.  
+- External properties (`@PropertySource + ${}`) → work same across all scopes.  
+
+---
+## 🔹 Summary
+1. Flexible configuration: **XML, Annotations, Java-based**  
+2. Multiple **bean scopes** with lifecycle differences  
+3. Supports all DI styles (**constructor, setter, field**)  
+4. Conflict resolution via **@Primary** & **@Qualifier**  
+5. Lazy loading with **@Lazy**, values via **@Value**  
 
 ---
 
 ## 🚀 Key Takeaways for Interviews
-✅ Understand **IOC & DI** — backbone of Spring.  
-✅ Be confident in **Setter Injection, Constructor Injection & Autowiring**.  
-✅ Explain **Primary, Lazy-init, Inner Beans** clearly.  
-✅ Show practical use of `@Component` and `@Autowired`.  
-✅ Demonstrate setup using **XML, Annotation, and Java Config**.  
+1. **IOC & DI** → Backbone of Spring  
+2. **Constructor injection** (preferred) vs Setter/Field  
+3. Resolve ambiguity using **@Primary / @Qualifier**  
+4. Explain **bean scopes, lazy-init, inner beans** clearly  
+5. Be confident with setup using **XML, Annotation, Java Config**  
 
 ---
-
-🔥 With this knowledge, you can confidently explain **Spring fundamentals** in interviews and showcase **hands-on implementation** to recruiters.  
+✅ Perfect for last-minute **interview revision**!
+  
