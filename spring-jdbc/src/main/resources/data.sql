@@ -1,0 +1,3 @@
+--insert into student (id,name,marks) values(1,'john wick',79);
+--insert into student (id,name,marks) values(2,'ballerina',68);
+--insert into student (id,name,marks) values(3,'batman',82);
