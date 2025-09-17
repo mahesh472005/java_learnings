@@ -5,9 +5,7 @@
         <link rel="stylesheet" type="text/css" href="style.css">
     </head>
     </body>
-        <h2>Result : <%= session.getAttribute("result") %> using Session Variable</h2>
-        <h2>Result : ${result} using JSTL</h2>
-
-
+        <h1> Welcome ! to ${tech}</h1>
+        <p> ${student1} </p>
     </body>
 </html>

@@ -5,13 +5,13 @@
         <link rel="stylesheet" type="text/css" href="style.css">
     </head>
     </body>
-        <h2>Telusko Calculator</h2>
+        <h2>Form</h2>
 
-         <form action="result">
-                <label for="num1">Enter 1st Number :</label>
-                <input type="text" id=num1" name="num1"><br>
-                <label for="num2">Enter 2nd Number :</label>
-                <input type="text" id="num2" name="num2"><br>
+         <form action="addStudent">
+                <label for="sid">Id : </label>
+                <input type="text" id="sid" name="sid"><br>
+                <label for="sname">Name : </label>
+                <input type="text" id="sname" name="sname"><br>
                 <input type="submit" value="Submit">
             </form>
 

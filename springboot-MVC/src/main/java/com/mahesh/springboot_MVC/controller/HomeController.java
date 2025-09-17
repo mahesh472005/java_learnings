@@ -1,10 +1,12 @@
 package com.mahesh.springboot_MVC.controller;
 
+import com.mahesh.springboot_MVC.model.Student;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
@@ -78,5 +80,26 @@ public class HomeController {
 //        mv.setViewName("result");
 //        return mv;
 //    }
+
+/*Using @ModelAttribute :
+*  To get the attribute value like java
+*  To directly set the Student object
+*  Generally, we do not write @ModelAttribute, as displayed in 3rd case below,
+   as it is assumed be there by default,  */
+    @ModelAttribute("tech")
+    public String tech()
+    {
+        return "java";
+    }
+//    @RequestMapping("/addStudent")
+//    public String addStudent(@ModelAttribute("student1") Student student)
+//    {
+//        return "result";
+//    }
+    @RequestMapping("/addStudent")
+    public String addStudent(Student student)
+    {
+        return "result";
+    }
 
 }
