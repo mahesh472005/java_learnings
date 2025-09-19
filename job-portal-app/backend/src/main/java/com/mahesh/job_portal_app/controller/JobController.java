@@ -1,10 +1,13 @@
 package com.mahesh.job_portal_app.controller;
 
 import com.mahesh.job_portal_app.model.JobPost;
+import com.mahesh.job_portal_app.repo.JobRepo;
 import com.mahesh.job_portal_app.service.JobService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 @RestController
@@ -13,6 +16,9 @@ public class JobController {
 
     @Autowired
     private JobService jobService;
+
+    @Autowired
+    private JobRepo jobRepo;
 
     @GetMapping("jobs")
     @ResponseBody
@@ -30,7 +36,7 @@ public class JobController {
     @PostMapping("job")
     public String addJob(@RequestBody JobPost jobPost)
     {
-        jobService.addjob(jobPost);
+        jobService.addJob(jobPost);
         return "Successfully added \n" + jobPost;
     }
 
@@ -45,6 +51,7 @@ public class JobController {
     {
         return jobService.deleteJob(id);
     }
+
 
 
 }

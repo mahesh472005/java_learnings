@@ -14,25 +14,25 @@ public class JobService {
     @Autowired
     private JobRepo jobRepo;
 
-    public void addjob(JobPost jobPost)
+    public void addJob(JobPost jobPost)
     {
-        jobRepo.addJob(jobPost);
+        jobRepo.save(jobPost);
     }
     public List<JobPost> findAllJobs()
     {
-
-        return jobRepo.findAllJobs();
+        return jobRepo.findAll();
     }
 
     public JobPost getJob(int id) {
-        return jobRepo.getJob(id);
+        return jobRepo.findById(id).orElse(new JobPost());
     }
 
     public JobPost updateJob(JobPost jobPost) {
-        return jobRepo.updateJob(jobPost);
+        return jobRepo.save(jobPost);
     }
 
     public String deleteJob(int id) {
-        return jobRepo.deleteJob(id);
+         jobRepo.deleteById(id);
+         return "successfully deleted !";
     }
 }

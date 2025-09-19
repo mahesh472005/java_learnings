@@ -3,7 +3,7 @@ import { addJob, updateJob } from "../api/jobApi";
 import { toast } from "sonner";
 
 export default function JobForm({ job, onSuccess }) {
-  const [form, setForm] = useState({ title: "", company: "", location: "", desc: "" });
+  const [form, setForm] = useState({ title: "", company: "", location: "", description: "" });
 
   useEffect(() => {
     if (job) setForm(job);
@@ -20,7 +20,7 @@ export default function JobForm({ job, onSuccess }) {
       await addJob(form);
       toast.success("Job added!");
     }
-    setForm({ title: "", company: "", location: "", desc: "" });
+    setForm({ title: "", company: "", location: "", description: "" });
     onSuccess();
   };
 
@@ -29,7 +29,7 @@ export default function JobForm({ job, onSuccess }) {
       <input name="title" placeholder="Job Title" value={form.title} onChange={handleChange} className="w-full p-2 border rounded" />
       <input name="company" placeholder="Company" value={form.company} onChange={handleChange} className="w-full p-2 border rounded" />
       <input name="location" placeholder="Location" value={form.location} onChange={handleChange} className="w-full p-2 border rounded" />
-      <textarea name="desc" placeholder="Job Description" value={form.desc} onChange={handleChange} className="w-full p-2 border rounded" />
+      <textarea name="description" placeholder="Job Description" value={form.description} onChange={handleChange} className="w-full p-2 border rounded" />
       <button type="submit" className="w-full px-3 py-2 bg-blue-600 text-white rounded-lg">Save</button>
     </form>
   );
