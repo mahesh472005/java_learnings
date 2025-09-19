@@ -1,123 +1,168 @@
-# 🏢 Job Portal Application
+# 📌 Job Portal Application
 
-A full-stack **Job Portal Web Application** built using **Spring Boot**, **JSP**, and **Maven**.  
-This project is designed for **learning & revision purposes**, covering core concepts of Java, Spring Boot, MVC, and web application development.
+A full-stack **Job Portal App** built with :-
+- **Backend** → Spring Boot (Java, REST APIs)
+- **Frontend** → React + Vite + TailwindCSS
+
+This project demonstrates **CRUD operations** (Create, Read, Update,
+Delete) for job postings.
+
+------------------------------------------------------------------------
+
+## ⚙️ Features
+
+### 🔹 Backend (Spring Boot)
+
+-   **Job Model**: Represents job postings with fields →
+    `id, title, company, location, desc`.
+-   **REST Endpoints** (in `JobController`):
+    -   `GET /jobs` → Fetch all jobs
+    -   `GET /job/{id}` → Fetch a specific job by ID
+    -   `POST /job` → Add a new job
+    -   `PUT /job` → Update an existing job
+    -   `DELETE /job/{id}` → Delete a job
+-   **In-Memory Repository (`JobRepo`)**:
+    -   Pre-loaded with sample jobs (Java Developer, Frontend Developer,
+        Data Scientist, etc.)
+    -   Stores job postings in a list (`ArrayList`)
+    -   Supports CRUD logic without an external database
+-   **Service Layer (`JobService`)**:
+    -   Acts as a middle layer between controller and repo
+    -   Keeps code organized and modular
+
+------------------------------------------------------------------------
+
+### 🔹 Frontend (React + Vite + Tailwind)
+
+-   Fetches jobs from Spring Boot backend (`http://localhost:8080`)
+-   Displays job cards (title, company, location, description)
+-   Provides a form to **add / edit jobs**
+-   Allows **deleting jobs** with confirmation
+-   Responsive design using TailwindCSS
+-   Minimal Navbar for navigation
+
+------------------------------------------------------------------------
+
+## 🗂️ Project Structure
+
+    job-portal-app/
+    ├── backend/                                   # Spring Boot application
+    │ ├── src/main/java/com/mahesh/job_portal_app/
+    │ │ ├── model/JobPost.java
+    │ │ ├── controller/JobController.java
+    │ │ ├── service/JobService.java
+    │ │ └── repo/JobRepo.java
+    │ └── pom.xml
+    │
+    ├── frontend/                               # React frontend application
+    │ ├── src/
+    │ ├── package.json
+    │ └── vite.config.js
+    │
+    └── start-job-portal.bat                      # One-click starter script
+
+------------------------------------------------------------------------
+
+## 🚀 Getting Started
+
+### 1️⃣ Clone Repository
+
+``` bash
+git clone https://github.com/<your-username>/job-portal-app.git
+cd job-portal-app
+```
+```
+
+This will: - Start Spring Boot backend (`mvn spring-boot:run`)
+- Start React frontend (`npm run dev`)
+
+### 2️⃣ Start Backend (Spring Boot)
+
+``` bash
+cd backend
+mvn spring-boot:run
+```
+
+Backend runs at → http://localhost:8080
+
+### 3️⃣ Start Frontend (React)
+
+``` bash
+cd frontend
+npm install
+npm run dev
+```
+
+Frontend runs at → http://localhost:5173
 
 ---
+## ⚡ Quick Start with Batch Script (Windows)
+Instead of starting backend & frontend separately:
 
-## 🚀 Features
-
-- Post new jobs  
-- View all job listings  
-- Add job details dynamically  
-- Simple and clean UI with JSP  
-- Service-Repository layered architecture  
-- Easy to extend for real-world use  
-
+``` bash
+start-job-portal.bat
+```
 ---
+
+------------------------------------------------------------------------
+
+## 🖥️ API Endpoints
+
+  | Method  | Endpoint        | Description              | Request Body                           |
+|---------|------------------|--------------------------|----------------------------------------|
+| GET     | `/jobs`          | Get all jobs             | —                                      |
+| GET     | `/job/{id}`      | Get job by ID            | —                                      |
+| POST    | `/job`           | Add new job              | `{ id, title, company, location, desc }` |
+| PUT     | `/job`           | Update existing job      | `{ id, title, company, location, desc }` |
+| DELETE  | `/job/{id}`      | Delete job by ID         | —                                      |
+
+
+## 📌 Example Job Object
+
+``` json
+{
+  "id": 101,
+  "title": "Java Developer",
+  "company": "Oracle",
+  "location": "Mumbai",
+  "desc": "Must have good experience in core Java and advanced Java"
+}
+```
+
+------------------------------------------------------------------------
+
+
+
+------------------------------------------------------------------------
 
 ## 🛠️ Tech Stack
 
-- **Backend**: Spring Boot, Java 8+, Maven  
-- **Frontend**: JSP, CSS  
-- **Database**: In-memory (default), can be extended to MySQL/PostgreSQL  
-- **Build Tool**: Maven  
+### Backend:
 
----
+-   Java 17
+-   Spring Boot
+-   REST APIs
 
-## 📂 Project Structure
+### Frontend:
 
-```
-job-portal-app/
-  ├── pom.xml                # Maven build configuration
-  ├── mvnw, mvnw.cmd         # Maven wrapper scripts
-  ├── HELP.md                # Spring Boot starter help
-  ├── src/
-  │   ├── main/
-  │   │   ├── java/com/mahesh/job_portal_app/
-  │   │   │   ├── JobPortalAppApplication.java    # Main Spring Boot application
-  │   │   │   ├── controller/                     # Controllers
-  │   │   │   │   └── JobController.java
-  │   │   │   ├── model/                          # Entities / Models
-  │   │   │   │   └── JobPost.java
-  │   │   │   ├── repo/                           # Repository layer
-  │   │   │   │   └── JobRepo.java
-  │   │   │   ├── service/                        # Service layer
-  │   │   │   │   └── JobService.java
-  │   │   ├── resources/
-  │   │   │   ├── application.properties          # App configuration
-  │   │   │   ├── static/                         # Static resources
-  │   │   │   ├── templates/                      # Templates (if used)
-  │   │   │   └── webapp/
-  │   │   │       ├── style.css
-  │   │   │       └── views/                      # JSP Views
-  │   │   │           ├── addjob.jsp
-  │   │   │           ├── home.jsp
-  │   │   │           ├── success.jsp
-  │   │   │           └── viewalljobs.jsp
-  │   └── test/java/com/mahesh/job_portal_app/    # Unit tests
-  └── .idea, .mvn, .gitignore                     # Project configs
-```
+-   React (Vite)
+-   TailwindCSS
+-   Axios (API calls)
 
----
+------------------------------------------------------------------------
 
-## ⚙️ Setup & Installation
+## 📚 Future Enhancements
 
-1. **Clone the repository**
-   ```bash
-   git clone https://github.com/your-username/job-portal-app.git
-   cd job-portal-app
-   ```
+-   Replace in-memory repo with MySQL/PostgreSQL
+-   Add User authentication & roles
+-   Advanced search & filter for jobs
+-   Deploy backend & frontend to cloud
 
-2. **Build the project with Maven**
-   ```bash
-   ./mvnw clean install
-   ```
+------------------------------------------------------------------------
 
-3. **Run the Spring Boot application**
-   ```bash
-   ./mvnw spring-boot:run
-   ```
+## 📸 Screenshots
 
-4. **Access the application**
-   ```
-   http://localhost:8080/
-   ```
 
----
+------------------------------------------------------------------------
 
-## 📖 Usage
-
-- Navigate to **Home Page** → `home.jsp`  
-- Add new jobs via **Add Job Form** (`addjob.jsp`)  
-- View all jobs on **View All Jobs** page (`viewalljobs.jsp`)  
-- Confirmation appears on `success.jsp`  
-
----
-
-## 🧩 Future Enhancements
-
-- User authentication (Spring Security)  
-- Database integration (MySQL/PostgreSQL)  
-- Advanced search & filter jobs  
-- REST APIs for external clients  
-- Responsive UI with Bootstrap/React  
-
----
-
-## 🤝 Contribution
-
-Contributions are welcome!  
-1. Fork the repo  
-2. Create a new branch (`feature-xyz`)  
-3. Commit changes  
-4. Open a Pull Request  
-
----
-
-## 📜 License
-
-This project is open-source and available under the **MIT License**.
-
----
-✨ Happy Coding & Revising! 🚀
+✨ Built with ❤️ by Mahesh
